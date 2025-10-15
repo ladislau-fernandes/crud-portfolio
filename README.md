@@ -1,46 +1,120 @@
-# 🧩 CRUD Portfólio - Spring Boot
+# CRUD Portfólio - Spring Boot
 
-[![Java](https://img.shields.io/badge/Java-17+-blue)](https://www.java.com/)  
-[![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.2-green)](https://spring.io/projects/spring-boot)  
-[![H2](https://img.shields.io/badge/H2-Database-yellow)](https://www.h2database.com/html/main.html)  
-[![Lombok](https://img.shields.io/badge/Lombok-Yes-orange)](https://projectlombok.org/)
-
-Um projeto **CRUD simples** com **Spring Boot**, **Lombok** e banco em **H2**, usado como base de aprendizado para evoluir com novas funcionalidades como **JWT, testes e Swagger**.
+Projeto **CRUD simples** com **Spring Boot**, **Lombok** e banco em **H2**, usado como base para aprendizado e evolução do projeto.
 
 ---
 
-<details>
-<summary>📌 Tecnologias Utilizadas</summary>
+## Tecnologias
 
-- **Java 17+**  
-- **Spring Boot 3**  
-- **Spring Web**  
-- **Spring Data JPA**  
-- **H2 Database**  
-- **Lombok**  
-- **Postman** (para testes HTTP)
-
-</details>
+* Java 17+
+* Spring Boot
+* Spring Web
+* Spring Data JPA
+* H2 Database
+* Lombok
+* Postman (para testes)
 
 ---
 
-<details>
-<summary>🎯 Objetivo do Projeto</summary>
+## Estrutura do Projeto
 
-Criar uma **API REST** que realiza operações CRUD na entidade `Project`.  
-Cada projeto possui:
-
-- `id` (Long)  
-- `title` (String)  
-- `description` (String)  
-- `link` (String)  
-
-Banco **H2 em memória** para testes rápidos e práticos.
-
-</details>
+```
+crud-portfolio/
+├── src/
+│   ├── main/
+│   │   ├── java/com/ladislau/crud_portfolio/
+│   │   │   ├── controller/ProjectController.java
+│   │   │   ├── model/Project.java
+│   │   │   ├── repository/ProjectRepository.java
+│   │   │   └── CrudPortfolioApplication.java
+│   │   └── resources/application.properties
+├── pom.xml
+└── README.md
+```
 
 ---
 
-<details>
-<summary>📁 Estrutura de Pastas</summary>
+## Configuração do Banco H2
 
+No arquivo `application.properties`:
+
+```properties
+spring.datasource.url=jdbc:h2:mem:testdb
+spring.datasource.driverClassName=org.h2.Driver
+spring.datasource.username=sa
+spring.datasource.password=
+spring.jpa.hibernate.ddl-auto=update
+spring.h2.console.enabled=true
+spring.h2.console.path=/h2-console
+```
+
+Acesse o console: [http://localhost:8080/h2-console](http://localhost:8080/h2-console)
+
+---
+
+## Endpoints
+
+| Método | Endpoint       | Descrição                     |
+| ------ | -------------- | ----------------------------- |
+| GET    | /projects      | Lista todos os projetos       |
+| GET    | /projects/{id} | Retorna um projeto específico |
+| POST   | /projects      | Cria um novo projeto          |
+| PUT    | /projects/{id} | Atualiza um projeto existente |
+| DELETE | /projects/{id} | Remove um projeto pelo ID     |
+
+---
+
+## Exemplo de Requisição (POST `/projects`)
+
+```json
+{
+  "title": "Meu Portfólio",
+  "description": "Projeto CRUD com Spring Boot",
+  "link": "https://github.com/ladislau-fernandes"
+}
+```
+
+---
+
+## Como Rodar
+
+1. Clone o repositório:
+
+```bash
+git clone https://github.com/ladislau-fernandes/crud-portfolio.git
+```
+
+2. Acesse a pasta:
+
+```bash
+cd crud-portfolio
+```
+
+3. Rode o projeto:
+
+```bash
+mvn spring-boot:run
+```
+
+4. Teste os endpoints no Postman ou navegador:
+
+```
+http://localhost:8080/projects
+```
+
+---
+
+## Próximos Passos
+
+* Adicionar **Swagger**
+* Autenticação **JWT**
+* Camada de **Service e DTOs**
+* Testes com **JUnit e Mockito**
+* Deploy em nuvem (**Render / Railway**)
+
+---
+
+## Autor
+
+**Ladislau Fernandes Marques Nagy**
+📍 Madre de Deus/BA
