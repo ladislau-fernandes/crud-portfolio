@@ -3,6 +3,7 @@ package com.ladislau.crud_portfolio.service;
 import com.ladislau.crud_portfolio.model.Project;
 import com.ladislau.crud_portfolio.repository.ProjectRepository;
 import org.springframework.stereotype.Service;
+import com.ladislau.crud_portfolio.exception.ResourceNotFoundException;
 
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class ProjectService {
     }
 
     public Project findById(Long id) {
-        return repository.findById(id).orElse(null);
+        return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Projeto com ID " + id + " não encontrado."));
     }
 
     public Project save(Project project) {
@@ -28,6 +29,8 @@ public class ProjectService {
     }
 
     public void delete(Long id) {
-        repository.deleteById(id);
+        Project existing = repository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Projeto com ID " + id + " não encontrado."));
+        repository.delete(existing);
     }
 }
