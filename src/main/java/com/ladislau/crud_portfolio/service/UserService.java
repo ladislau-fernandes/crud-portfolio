@@ -1,16 +1,14 @@
 package com.ladislau.crud_portfolio.service;
 
-import java.util.List;
-
-import org.springframework.stereotype.Service;
-
 import com.ladislau.crud_portfolio.model.User;
 import com.ladislau.crud_portfolio.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
-import lombok.AllArgsConstructor;
+import java.util.List;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class UserService {
 
     private final UserRepository userRepository;
@@ -30,5 +28,4 @@ public class UserService {
     public void delete(Long id) {
         userRepository.deleteById(id);
     }
-
 }

@@ -1,16 +1,12 @@
 package com.ladislau.crud_portfolio.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import com.ladislau.crud_portfolio.dto.UserDTO;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -29,10 +25,20 @@ public class User {
     private Long id;
 
     private String name;
+
+    @Column(unique = true)
     private String email;
+
+    private String password;
 
     
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
-    private List<Project> projects;
+    private List<Project> projects = new ArrayList<>();
+
+    public User(UserDTO dto) {
+    }
+
+    public User(String ladislau, String mail, String number, Object o) {
+    }
 }
